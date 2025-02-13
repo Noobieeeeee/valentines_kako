@@ -450,6 +450,21 @@ font-family: 'Dancing Script', cursive;
             });
         });
 
+const memoryGrid = document.querySelector(".memory-grid");
+
+let isDown = false;
+let startX;
+let scrollLeft;	    
+memoryGrid.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].pageX - memoryGrid.offsetLeft;
+    scrollLeft = memoryGrid.scrollLeft;
+});
+
+memoryGrid.addEventListener("touchmove", (e) => {
+    const x = e.touches[0].pageX - memoryGrid.offsetLeft;
+    const walk = (x - startX) * 2;
+    memoryGrid.scrollLeft = scrollLeft - walk;
+});
     function openEnvelope() {
         const envelope = document.querySelector('.envelope');
         const letter = document.getElementById('loveLetter');
